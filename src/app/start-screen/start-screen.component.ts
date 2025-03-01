@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ButtonComponent } from '../button/button.component';
 import { Router } from '@angular/router';
 
@@ -9,8 +9,10 @@ import { Router } from '@angular/router';
   templateUrl: './start-screen.component.html',
   styleUrl: './start-screen.component.scss',
 })
-export class StartScreenComponent {
+export class StartScreenComponent implements OnInit {
   constructor(private router: Router) {}
+
+  ngOnInit(): void {}
 
   newGame() {
     this.router.navigateByUrl('/game');
