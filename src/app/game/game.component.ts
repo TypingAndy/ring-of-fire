@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialog } from '@angular/material/dialog';
 import { AddPlayerComponent } from '../add-player/add-player.component';
+import { GameInfoComponent } from '../game-info/game-info.component';
 
 @Component({
   selector: 'app-game',
@@ -17,6 +18,7 @@ import { AddPlayerComponent } from '../add-player/add-player.component';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
+    GameInfoComponent
   ],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss',
@@ -45,6 +47,9 @@ export class GameComponent implements OnInit {
       console.log(this.currentCard);
       this.pickCardAnimation = true;
 
+this.game.currentPlayer++;
+this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
+
       setTimeout(() => {
         this.game.playedCards.push(this.currentCard);
         this.pickCardAnimation = false;
@@ -56,8 +61,8 @@ export class GameComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(AddPlayerComponent);
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
+    dialogRef.afterClosed().subscribe((name:string) => {
+    this.game.players.push(name);
     });
   }
 }
