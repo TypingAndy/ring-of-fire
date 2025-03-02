@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-player',
@@ -30,9 +31,11 @@ import { MatInputModule } from '@angular/material/input';
 export class AddPlayerComponent implements OnInit {
   name: string = '';
 
-  constructor() {}
+  constructor(private dialogRef: MatDialogRef<AddPlayerComponent>) {}
 
   ngOnInit(): void {}
 
-  onNoClick() {}
+  onNoClick() {
+this.dialogRef.close();
+  }
 }
